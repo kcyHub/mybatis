@@ -71,4 +71,44 @@ public class StudentDaoImpl implements StudentDao {
             }
         }
     }
+
+    @Override
+    public int updateStudent(Student stu) {
+        SqlSession ss = null;
+        try {
+            ss = SSF.openSession();
+            int result = ss.update(NAME_SPACE + "updateStudent", stu);
+            ss.commit();
+            return result;
+        } catch (Exception e) {
+            if (ss != null) {
+                ss.rollback();
+            }
+            throw e;
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+    }
+
+    @Override
+    public int deleteById(int id) {
+        SqlSession ss = null;
+        try {
+            ss = SSF.openSession();
+            int result = ss.delete(NAME_SPACE + "deleteById", id);
+            ss.commit();
+            return result;
+        } catch (Exception e) {
+            if (ss != null) {
+                ss.rollback();
+            }
+            throw e;
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+    }
 }

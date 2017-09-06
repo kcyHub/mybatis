@@ -18,6 +18,18 @@
         ]]>
     </insert>
 
+    <update id="updateStudent" parameterType="Student">
+        <![CDATA[
+          UPDATE student SET STUDENT_AGE = #{age} WHERE STUDENT_ID = #{id};
+        ]]>
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        <![CDATA[
+          DELETE FROM student WHERE STUDENT_ID = #{id};
+        ]]>
+    </delete>
+
     <select id="selectById" parameterType="int" resultMap="studentResultMap">
         <![CDATA[
           SELECT * FROM student WHERE STUDENT_ID = #{id};

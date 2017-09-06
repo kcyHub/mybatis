@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Student {
 
-    private long id;
+    private int id;
     private String name;
     private int age;
     private Date birthday;
@@ -18,11 +18,11 @@ public class Student {
         this.birthday = birthday;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
