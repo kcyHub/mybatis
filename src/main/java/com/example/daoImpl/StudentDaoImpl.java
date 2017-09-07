@@ -19,7 +19,7 @@ public class StudentDaoImpl implements StudentDao {
 
     static {
         try {
-            InputStream input = Resources.getResourceAsStream("mybatis-config.xml");
+            InputStream input = Resources.getResourceAsStream("mybatis.xml");
             SSF = new SqlSessionFactoryBuilder().build(input);
         } catch (IOException e) {
             e.printStackTrace();

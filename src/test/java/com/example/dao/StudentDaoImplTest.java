@@ -1,6 +1,7 @@
-package com.example.daoImpl;
+package com.example.dao;
 
 import com.example.dao.StudentDao;
+import com.example.daoImpl.StudentDaoImpl;
 import com.example.entity.Student;
 import org.junit.Test;
 
