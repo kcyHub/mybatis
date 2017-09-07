@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.entity.TeacherMapper">
+
+    <resultMap id="teacherResultMap" type="com.example.entity.Teacher">
+        <result property="id" column="TEACHER_ID"/>
+        <result property="name" column="TEACHER_NAME"/>
+    </resultMap>
+    
+    <sql id="insertColumns">
+        TEACHER_ID, TEACHER_NAME
+    </sql>
+
+    <insert id="insertTeacher" useGeneratedKeys="true" keyProperty="id" parameterType="Teacher">
+        INSERT INTO teacher (<include refid="insertColumns"/>) VALUES (NULL, #{name});
+    </insert>
+    
+    <insert id="batchInsert" useGeneratedKeys="true" parameterType="java.util.List">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO teacher (<include refid="insertColumns"/>) VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id}, #{item.name})
+        </foreach>
+    </insert>
+
+    <select id="selectById" parameterType="int" resultMap="teacherResultMap">
+        SELECT <include refid="insertColumns"/> FROM teacher WHERE TEACHER_ID = #{id};
+    </select>
+
+    <select id="selectAll" resultMap="teacherResultMap">
+        SELECT <include refid="insertColumns"/> FROM teacher;
+    </select>
+
+</mapper>
