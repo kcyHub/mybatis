@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class SchoolServiceImpl implements SchoolService {
 
     @Autowired
@@ -20,6 +19,7 @@ public class SchoolServiceImpl implements SchoolService {
     private StudentDao studentDao;
 
     @Override
+    @Transactional
     public void insertTeacherAndStudent(Teacher teacher, Student stu) {
         teacherDao.insertTeacher(teacher);
         studentDao.insertStudent(stu);
